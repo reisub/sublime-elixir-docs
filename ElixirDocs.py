@@ -66,7 +66,6 @@ class ModuleListInputHandler(sublime_plugin.ListInputHandler):
                 if name == namespace or name.startswith(namespace + ".") or name.startswith("Mix." + namespace) or name.startswith("Mix.Tasks."):
                     documented_modules.append(name)
 
-        documented_modules.sort()
         return documented_modules
 
     def get_documented_modules(self, dep_path, namespace):
@@ -81,6 +80,7 @@ class ModuleListInputHandler(sublime_plugin.ListInputHandler):
                 modules = self.get_module_names(filestr, namespace)
                 module_names.extend(modules)
 
+        module_names.sort()
         return module_names
 
     def elixir_modules(self):
@@ -88,7 +88,7 @@ class ModuleListInputHandler(sublime_plugin.ListInputHandler):
         return {"name": "Elixir", "base_url": "https://hexdocs.pm/elixir", "namespace": "Elixir", "modules": modules}
 
     def collect_dependency_modules(self, project_root):
-        collected_deps = [self.elixir_modules()]
+        collected_deps = []
 
         if project_root:
             deps = self.get_deps(project_root)
@@ -102,7 +102,8 @@ class ModuleListInputHandler(sublime_plugin.ListInputHandler):
                 if modules and len(modules) > 0:
                     collected_deps.append({"name": name, "version": version, "base_url": base_url, "namespace": namespace, "modules": modules})
 
-        return collected_deps
+        collected_deps.sort(key=lambda dep: dep["name"])
+        return [self.elixir_modules()] + collected_deps
 
     def list_items(self):
         sublime_build = int(sublime.version())
