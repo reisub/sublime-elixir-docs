@@ -1,0 +1,23 @@
+[
+  {
+    "id": "preferences",
+    "children": [
+      {
+        "caption": "Package Settings",
+        "mnemonic": "P",
+        "id": "package-settings",
+        "children": [
+          {
+            "caption": "ElixirDocs",
+            "id": "elixirdocs-settings",
+            "command": "edit_settings",
+            "args": {
+              "base_file": "${packages}/sublime-elixir-docs/ElixirDocs.sublime-settings",
+              "default": "// Settings in here override those in \"sublime-elixir-docs/ElixirDocs.sublime-settings\",\n\n{\n\t$0\n}\n",
+            }
+          }
+        ]
+      }
+    ]
+  }
+]
