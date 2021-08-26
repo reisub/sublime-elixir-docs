@@ -7,7 +7,7 @@ A Sublime Text 3/4 plugin for quick navigation to [HexDocs](https://hexdocs.pm) 
 ## Installing with [Package Control](https://packagecontrol.io/installation)
 
 1. Press `⌘/Ctrl + Shift + P` to open the command palette.
-2. Type `Package Control: Install Package` and press enter. Then search for `Elixir Docs`, select the package and hit enter.
+2. Type `Package Control: Install Package` and press enter. Then search for `ElixirDocs`, select the package and hit enter.
 
 ## Usage
 
