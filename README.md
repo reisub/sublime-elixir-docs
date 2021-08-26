@@ -20,7 +20,7 @@ A Sublime plugin to quickly navigate to [HexDocs](https://hexdocs.pm) documentat
 Finding documented modules is done in Python code and is not exact. It's based on regular expressions which operate under certain assumptions.
 Because of this, you may not be able to find some modules even though they are documented. You also may find some modules which don't have documentation published on HexDocs.
 
-There is no simple fix for this, to make it better one would need to parse the Elixir code into an AST and use the AST to extract information. Further more, we would need a fast way to check whether a module has documentation published on HexDocs.
+There is no simple fix for this, to make it better one would need to parse the Elixir code into an AST and use the AST to extract information. Furthermore, one would need a fast way to check whether a module has documentation published on HexDocs.
 
 That being said, this is just a convenience to access (most of) the documentation faster - so I'm not sure it's justified to invest the work in making it 100% correct.
 
