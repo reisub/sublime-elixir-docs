@@ -1,6 +1,6 @@
 # Elixir Docs
 
-A Sublime plugin to quickly navigate to [HexDocs](https://hexdocs.pm) documentation for modules in Elixir and project dependencies.
+A Sublime Text 3/4 plugin for quick navigation to [HexDocs](https://hexdocs.pm) documentation for modules in Elixir and in project dependencies.
 
 ![Demo](demo.gif)
 
