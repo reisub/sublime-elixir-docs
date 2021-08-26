@@ -5,7 +5,7 @@ import sublime_plugin
 import webbrowser
 
 NAMESPACE_RE = re.compile("defmodule\s+([\w+-\.]+).Mix(?:Project|file)\s+do")
-VERSION_RE = re.compile("@version\s+\"([\w\+-\.]+)\"")
+VERSION_RE = re.compile("(?:@version|version:)\s+\"([\w\+-\.]+)\"")
 MDOC_FALSE_RE = re.compile("@moduledoc\s+false")
 MODULE_SPLIT_RE = re.compile("(def(?:module|protocol)\s+(?:[\w\.]+)\s+do)")
 MODULE_RE = re.compile("def(?:module|protocol)\s+([\w\.]+)\s+do")
