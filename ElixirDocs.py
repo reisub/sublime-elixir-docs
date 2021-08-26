@@ -23,7 +23,7 @@ class ModuleListInputHandler(sublime_plugin.ListInputHandler):
 
     def get_info(self, mix_exs_path):
         try:
-            file = open(mix_exs_path)
+            file = open(mix_exs_path, encoding='utf8')
             filestr = file.read(250)
             version_match = re.search(VERSION_RE, filestr)
             namespace_match = re.search(NAMESPACE_RE, filestr)
@@ -81,7 +81,7 @@ class ModuleListInputHandler(sublime_plugin.ListInputHandler):
             for root, dirs, files in os.walk(lib_path):
                 for f in files:
                     if f.endswith(".ex"):
-                        file = open(os.path.join(root, f))
+                        file = open(os.path.join(root, f), encoding='utf8')
                         filestr = file.read()
                         modules = self.get_module_names(filestr, namespace)
                         module_names.extend(modules)
