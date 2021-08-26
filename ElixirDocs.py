@@ -33,14 +33,18 @@ class ModuleListInputHandler(sublime_plugin.ListInputHandler):
             return None
 
     def get_deps(self, path):
-        deps = []
-        deps_path = os.path.join(path, "deps")
-        for entry in os.listdir(deps_path):
-            info = self.get_info(os.path.join(deps_path, entry, "mix.exs"))
-            if info:
-                info["path"] = os.path.join(deps_path, entry)
-                deps.append(info)
-        return deps
+        try:
+            deps = []
+            deps_path = os.path.join(path, "deps")
+            for entry in os.listdir(deps_path):
+                info = self.get_info(os.path.join(deps_path, entry, "mix.exs"))
+                if info:
+                    info["path"] = os.path.join(deps_path, entry)
+                    deps.append(info)
+
+            return deps
+        except FileNotFoundError:
+            return []
 
     def split_into_modules(self, filestr):
         modules = []
@@ -71,17 +75,21 @@ class ModuleListInputHandler(sublime_plugin.ListInputHandler):
     def get_documented_modules(self, dep_path, namespace):
         # only visit "lib" dir, this make sure we ignore test modules
         lib_path = os.path.join(dep_path, "lib")
-        module_names = []
 
-        for root, dirs, files in os.walk(lib_path):
-            for f in files:
-                file = open(os.path.join(root, f))
-                filestr = file.read()
-                modules = self.get_module_names(filestr, namespace)
-                module_names.extend(modules)
+        try:
+            module_names = []
+            for root, dirs, files in os.walk(lib_path):
+                for f in files:
+                    file = open(os.path.join(root, f))
+                    filestr = file.read()
+                    modules = self.get_module_names(filestr, namespace)
+                    module_names.extend(modules)
 
-        module_names.sort()
-        return module_names
+            module_names.sort()
+            return module_names
+
+        except FileNotFoundError:
+            return []
 
     def elixir_modules(self):
         modules = ["Kernel", "Kernel.SpecialForms", "Atom", "Base", "Bitwise", "Date", "DateTime"]
