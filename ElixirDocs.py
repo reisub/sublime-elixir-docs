@@ -80,10 +80,11 @@ class ModuleListInputHandler(sublime_plugin.ListInputHandler):
             module_names = []
             for root, dirs, files in os.walk(lib_path):
                 for f in files:
-                    file = open(os.path.join(root, f))
-                    filestr = file.read()
-                    modules = self.get_module_names(filestr, namespace)
-                    module_names.extend(modules)
+                    if f.endswith(".ex"):
+                        file = open(os.path.join(root, f))
+                        filestr = file.read()
+                        modules = self.get_module_names(filestr, namespace)
+                        module_names.extend(modules)
 
             module_names.sort()
             return module_names
@@ -146,6 +147,9 @@ class ElixirDocsCommand(sublime_plugin.WindowCommand):
         return ModuleListInputHandler(self.project_root)
 
     def get_project_root(self):
+        project_root_override = self.settings.get("projectDir")
         open_folders = self.window.folders()
-        if open_folders and len(open_folders) > 0:
+        if project_root_override:
+            return project_root_override
+        elif open_folders and len(open_folders) > 0:
             return open_folders[0]

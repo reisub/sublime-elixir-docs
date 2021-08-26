@@ -1,8 +1,4 @@
 {
-  "settings": {
-    "ElixirDocs": {
-      // Subdirectory containing Mix project if not in the project root
-      "projectDir": null,
-    }
-  }
+  // Subdirectory containing Mix project if not in the project root
+  "projectDir": null,
 }
