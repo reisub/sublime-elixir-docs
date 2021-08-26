@@ -104,7 +104,7 @@ class ModuleListInputHandler(sublime_plugin.ListInputHandler):
             deps = self.get_deps(project_root)
             for dep in deps:
                 path = dep["path"]
-                name = path.split("/")[-1]
+                name = path.split(os.sep)[-1]
                 namespace = dep["namespace"]
                 version = dep["version"]
                 base_url = "https://hexdocs.pm/" + name + "/" + version
