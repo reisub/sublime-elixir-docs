@@ -147,7 +147,7 @@ class ElixirDocsCommand(sublime_plugin.WindowCommand):
         return ModuleListInputHandler(self.project_root)
 
     def get_project_root(self):
-        project_root_override = self.settings.get("projectDir")
+        project_root_override = self.settings.get("project_dir")
         open_folders = self.window.folders()
         if project_root_override:
             return project_root_override
